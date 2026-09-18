@@ -1,40 +1,76 @@
 
-    
+  
         body {
             font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: #0a0a0c;
+            color: #f3f4f6;
+            overflow-x: hidden;
         }
-        .font-heading {
-            font-family: 'Outfit', sans-serif;
+
+        /* Fixed Luffy Background Overlay Effect */
+        .bg-fixed-luffy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('FB_IMG_1783329062460.jpg'), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            filter: brightness(0.25) contrast(1.1);
+            transition: filter 0.3s ease;
         }
-        /* Custom scrollbar */
+
+        .dark .bg-fixed-luffy {
+            filter: brightness(0.20) contrast(1.2);
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(20, 20, 25, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #111827;
+        }
+
+        /* Custom Gold Glows */
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-glow:hover {
+            border-color: #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Scrollbar customization */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.1);
+            background: #0a0a0c;
         }
         ::-webkit-scrollbar-thumb {
-            background: #00C896;
+            background: #D4AF37;
             border-radius: 4px;
         }
-        .glass-panel {
-            background: rgba(11, 46, 38, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 200, 150, 0.15);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD700;
         }
-        .light .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-        }
-        .glow-accent {
-            box-shadow: 0 0 20px rgba(0, 200, 150, 0.25);
-        }
-        .glow-purple {
-            box-shadow: 0 0 25px rgba(60, 14, 89, 0.4);
-        }
-    
+  
