@@ -3,622 +3,513 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Da-Legend Music Academy</title>
+    <title>Da-Legend Music Academy | Excellence in Musical Education</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
-<link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
 </head>
-<body class="bg-legend-darkBg text-slate-100 light:bg-slate-50 light:text-slate-800 min-h-screen flex flex-col antialiased selection:bg-legend-accent selection:text-black">
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold selection:text-black">
 
-    <header class="sticky top-0 z-40 w-full glass-panel border-b border-legend-accent/20 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-legend-purple to-legend-accent flex items-center justify-center text-white shadow-lg glow-accent transform transition hover:scale-105">
-                        <i class="fa-solid fa-guitar text-xl text-legend-accentGlow"></i>
-                    </div>
-                    <div>
-                        <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-wider text-white dark:text-white light:text-slate-900 block leading-none">DA-LEGEND</span>
-                        <span class="text-[10px] tracking-widest text-legend-accent uppercase font-semibold">Music Academy</span>
-                    </div>
+    <div class="bg-fixed-luffy" id="luffyBg"></div>
+
+    <header class="sticky top-0 z-50 glass-panel border-b border-gold/20 px-4 lg:px-8 py-3 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light flex items-center justify-center text-black font-extrabold text-xl shadow-lg">
+                    <i class="fa-solid font-bold fa-music"></i>
                 </div>
-
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex space-x-1 lg:space-x-2">
-                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-legend-accent bg-legend-accent/10 border border-legend-accent/30">
-                        <i class="fa-solid fa-house mr-2"></i>Home
-                    </button>
-                    <button onclick="navigateTo('news')" id="nav-news" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 light:text-slate-600 hover:text-legend-accent hover:bg-legend-accent/5">
-                        <i class="fa-solid fa-newspaper mr-2"></i>News
-                    </button>
-                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 light:text-slate-600 hover:text-legend-accent hover:bg-legend-accent/5">
-                        <i class="fa-solid fa-circle-info mr-2"></i>About
-                    </button>
-                    <button onclick="navigateTo('profile')" id="nav-profile" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 light:text-slate-600 hover:text-legend-accent hover:bg-legend-accent/5">
-                        <i class="fa-solid fa-user mr-2"></i>Profile
-                    </button>
-                    <button onclick="navigateTo('music')" id="nav-music" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 light:text-slate-600 hover:text-legend-accent hover:bg-legend-accent/5">
-                        <i class="fa-solid fa-music mr-2"></i>Music
-                    </button>
-                </nav>
-
-                <!-- Actions: Theme Toggle & Chat Button -->
-                <div class="flex items-center space-x-3">
-                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-legend-darkCard dark:bg-legend-darkCard light:bg-slate-200 text-legend-accent border border-legend-accent/20 hover:border-legend-accent transition-all duration-300 focus:outline-none" title="Toggle Theme">
-                        <i id="themeIcon" class="fa-solid fa-sun text-lg"></i>
-                    </button>
-
-                    <button onclick="toggleChatModal()" class="hidden sm:flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-legend-purple to-purple-800 hover:from-purple-700 hover:to-legend-purple text-white text-sm font-semibold transition-all shadow-md hover:shadow-lg border border-purple-400/30">
-                        <i class="fa-solid fa-robot text-legend-accentGlow"></i>
-                        <span>AI Maestro</span>
-                    </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-legend-darkCard dark:bg-legend-darkCard light:bg-slate-200 text-slate-200 light:text-slate-700 focus:outline-none">
-                        <i id="menuIcon" class="fa-solid fa-bars text-xl"></i>
-                    </button>
+                <div>
+                    <h1 class="font-extrabold text-xl tracking-wider gold-gradient-text">DA-LEGEND</h1>
+                    <p class="text-[10px] tracking-widest text-gray-400 uppercase font-semibold">Music Academy</p>
                 </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gold bg-gold/10 border border-gold/30">
+                    <i class="fa-solid fa-house mr-1.5"></i>Home
+                </button>
+                <button onclick="switchTab('news')" id="nav-news" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-gold hover:bg-gold/10 transition-all duration-200">
+                    <i class="fa-solid fa-newspaper mr-1.5"></i>News & Stories
+                </button>
+                <button onclick="switchTab('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-gold hover:bg-gold/10 transition-all duration-200">
+                    <i class="fa-solid fa-circle-info mr-1.5"></i>About Us
+                </button>
+                <button onclick="switchTab('profile')" id="nav-profile" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-gold hover:bg-gold/10 transition-all duration-200">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i>Courses
+                </button>
+                <button onclick="switchTab('music')" id="nav-music" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-gold hover:bg-gold/10 transition-all duration-200">
+                    <i class="fa-solid fa-compact-disc mr-1.5"></i>Audio Hub
+                </button>
+                <button onclick="switchTab('ai')" id="nav-ai" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-gold hover:bg-gold/10 transition-all duration-200">
+                    <i class="fa-solid fa-robot mr-1.5"></i>AI Assistant
+                </button>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-full bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30 transition-transform active:scale-95" title="Toggle Light/Dark Theme">
+                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- Enroll Button -->
+                <button onclick="openEnrollModal()" class="hidden sm:inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold to-gold-dark text-black font-bold text-sm hover:brightness-110 transform hover:-translate-y-0.5 transition-all shadow-md">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Enroll Now</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-lg bg-gold/10 text-gold border border-gold/30">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobileMenu" class="hidden md:hidden border-t border-legend-accent/20 bg-legend-darkBg/95 dark:bg-legend-darkBg/95 light:bg-slate-100/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2">
-            <button onclick="navigateTo('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 light:text-slate-800 hover:bg-legend-accent/10 hover:text-legend-accent flex items-center space-x-3">
-                <i class="fa-solid fa-house w-6 text-legend-accent"></i>
-                <span>Home</span>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 space-y-2 border-t border-gold/20 mt-3">
+            <button onclick="switchTab('home')" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-200 hover:bg-gold/10 hover:text-gold flex items-center space-x-3">
+                <i class="fa-solid fa-house w-5 text-gold"></i><span>Home</span>
             </button>
-            <button onclick="navigateTo('news'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 light:text-slate-800 hover:bg-legend-accent/10 hover:text-legend-accent flex items-center space-x-3">
-                <i class="fa-solid fa-newspaper w-6 text-legend-accent"></i>
-                <span>News</span>
+            <button onclick="switchTab('news')" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-200 hover:bg-gold/10 hover:text-gold flex items-center space-x-3">
+                <i class="fa-solid fa-newspaper w-5 text-gold"></i><span>News & Student Stories</span>
             </button>
-            <button onclick="navigateTo('about'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 light:text-slate-800 hover:bg-legend-accent/10 hover:text-legend-accent flex items-center space-x-3">
-                <i class="fa-solid fa-circle-info w-6 text-legend-accent"></i>
-                <span>About</span>
+            <button onclick="switchTab('about')" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-200 hover:bg-gold/10 hover:text-gold flex items-center space-x-3">
+                <i class="fa-solid fa-circle-info w-5 text-gold"></i><span>About Da-Legend</span>
             </button>
-            <button onclick="navigateTo('profile'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 light:text-slate-800 hover:bg-legend-accent/10 hover:text-legend-accent flex items-center space-x-3">
-                <i class="fa-solid fa-user w-6 text-legend-accent"></i>
-                <span>Profile</span>
+            <button onclick="switchTab('profile')" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-200 hover:bg-gold/10 hover:text-gold flex items-center space-x-3">
+                <i class="fa-solid fa-graduation-cap w-5 text-gold"></i><span>Courses & Profile</span>
             </button>
-            <button onclick="navigateTo('music'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 light:text-slate-800 hover:bg-legend-accent/10 hover:text-legend-accent flex items-center space-x-3">
-                <i class="fa-solid fa-music w-6 text-legend-accent"></i>
-                <span>Music Player</span>
+            <button onclick="switchTab('music')" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-200 hover:bg-gold/10 hover:text-gold flex items-center space-x-3">
+                <i class="fa-solid fa-compact-disc w-5 text-gold"></i><span>Audio Hub</span>
             </button>
-            <button onclick="toggleChatModal(); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-white bg-gradient-to-r from-legend-purple to-purple-800 flex items-center space-x-3">
-                <i class="fa-solid fa-robot w-6 text-legend-accentGlow"></i>
-                <span>Music AI Assistant</span>
+            <button onclick="switchTab('ai')" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-200 hover:bg-gold/10 hover:text-gold flex items-center space-x-3">
+                <i class="fa-solid fa-robot w-5 text-gold"></i><span>AI Music Tutor</span>
             </button>
+            <div class="pt-2">
+                <button onclick="openEnrollModal()" class="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-black font-bold text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Contact via WhatsApp</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Main Container for View Sections -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 flex-grow w-full">
 
-        <section id="section-home" class="space-y-12">
+        <!-- ================= HOME SECTION ================= -->
+        <section id="tab-home" class="tab-content block space-y-12">
             <!-- Hero Banner -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-legend-purple via-[#250838] to-legend-darkCard p-8 sm:p-12 lg:p-16 border border-purple-500/30 shadow-2xl glow-purple">
-                <div class="absolute -right-12 -bottom-12 text-white/5 pointer-events-none text-[220px]">
-                    <i class="fa-solid fa-music"></i>
-                </div>
-                <div class="relative z-10 max-w-3xl space-y-6">
-                    <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-legend-accent/20 text-legend-accent border border-legend-accent/30">
-                        <i class="fa-solid fa-crown mr-2"></i> Welcome to Excellence
-                    </span>
-                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight">
-                        Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-legend-accent via-emerald-300 to-teal-200">Da-Legend</span> Music Academy
+            <div class="glass-panel rounded-3xl p-8 lg:p-14 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-10">
+                <div class="space-y-6 max-w-2xl text-center lg:text-left z-10">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold tracking-wide">
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <span>PREMIER MUSIC EDUCATION BY DA-LEGEND</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Unlock Your <span class="gold-gradient-text">Musical Mastery</span> At Da-Legend
                     </h1>
-                    <p class="text-lg sm:text-xl text-purple-100/90 leading-relaxed font-light">
-                        Where passion meets purpose and talent becomes timeless. Here, music isn’t just taught — <span class="text-legend-accent font-semibold italic">it’s felt.</span>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                        Experience world-class music training in Piano, Vocal Mastery, Guitar, Saxophone, and Audio Production. Join Da-Legend Academy and transform your passion into legendary performance.
                     </p>
-                    <div class="pt-4 flex flex-wrap gap-4">
-                        <button onclick="navigateTo('news')" class="px-7 py-3.5 rounded-xl bg-legend-accent text-slate-950 font-bold hover:bg-emerald-300 transition-all shadow-lg glow-accent transform hover:-translate-y-0.5">
-                            Enroll Now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="openEnrollModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-gold via-gold-glow to-gold-dark text-black font-extrabold text-base hover:shadow-lg hover:shadow-gold/30 transform hover:-translate-y-1 transition-all">
+                            Enroll On WhatsApp <i class="fa-solid fa-arrow-right ml-2"></i>
                         </button>
-                        <button onclick="toggleChatModal()" class="px-7 py-3.5 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 backdrop-blur-md transition-all border border-white/20">
-                            Ask Music AI <i class="fa-solid fa-sparkles ml-2 text-legend-accentGlow"></i>
+                        <button onclick="switchTab('news')" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel text-gold font-semibold text-base border border-gold/40 hover:bg-gold/10 transition-all">
+                            Read Student Stories
                         </button>
+                    </div>
+                </div>
+
+                <!-- Featured Hero Card / Student Display -->
+                <div class="w-full lg:w-5/12 z-10">
+                    <div class="glass-panel p-4 rounded-2xl border-gold/40 relative transform rotate-1 hover:rotate-0 transition-transform duration-300 shadow-2xl">
+                        <!-- Easy-to-replace hero image -->
+                        <img src="student_hero.jpg" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80'" alt="Da-Legend Music Student Performing" class="w-full h-72 object-cover rounded-xl shadow-md mb-4">
+                        <div class="flex items-center justify-between px-2">
+                            <div>
+                                <h3 class="font-bold text-lg text-gold">Student Spotlight</h3>
+                                <p class="text-xs text-gray-300">Live Orchestra Performance Class</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-gold/20 text-gold border border-gold/30">Da-Legend Studio</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Intro Quote Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl border-l-4 border-l-legend-accent transition hover:transform hover:-translate-y-1">
-                    <div class="flex items-start space-x-4">
-                        <div class="p-3 bg-legend-accent/10 rounded-xl text-legend-accent">
-                            <i class="fa-solid fa-book-open text-2xl"></i>
+            <!-- Highlights Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl border-gold/20 hover:border-gold/50 transition-all space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-gold text-2xl font-bold">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gold">State-of-the-Art Facilities</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">Top-tier acoustic sound rooms, modern digital audio workstations, and high-fidelity rehearsal spaces crafted by Da-Legend.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-gold/20 hover:border-gold/50 transition-all space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-gold text-2xl font-bold">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gold">Certified Curriculum</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">Comprehensive learning paths covering classical music theory, sight-reading, jazz improvisation, and modern music production.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-gold/20 hover:border-gold/50 transition-all space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-gold text-2xl font-bold">
+                        <i class="fa-solid fa-users text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gold">Vibrant Community</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">Join a thriving network of aspiring instrumentalists and vocalists under the guidance of Da-Legend mentors.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= STREAMING_CHUNK:Rendering News Section with Student Experiences & 2 Videos... ================= -->
+        <section id="tab-news" class="tab-content hidden space-y-10">
+            <!-- News Header -->
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-gold bg-gold/10 px-4 py-1.5 rounded-full border border-gold/30">Latest News & Experiences</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-white">Student Stories & Academy Media</h2>
+                <p class="text-gray-300 text-sm sm:text-base">Discover true stories from students studying at Da-Legend Music Academy and watch their live performances!</p>
+            </div>
+
+            <!-- Section 1: Student Experience Cards (Images speak about student's good experience) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gold/30 hover:border-gold transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden group">
+                            <!-- Easy to replace image: Replace student_experience_1.jpg with your photo -->
+                            <img src="student_experience_1.jpg" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80'" alt="Da-Legend Student Experience - Piano Class" class="w-full h-52 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-gold text-xs px-3 py-1 rounded-full font-semibold border border-gold/40">Piano Masterclass</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center space-x-2 text-xs text-gold font-medium">
+                                <i class="fa-solid fa-user-graduate"></i>
+                                <span>Student Experience at Da-Legend</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">"From Zero to Playing Symphony Pieces in 6 Months"</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                "Enrolling at Da-Legend Music Academy changed my entire perspective on piano technique. The personalized patience of Da-Legend instructors helped me build real confidence and rhythm mastery."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 text-xs text-gray-400 border-t border-gold/10 mt-4 flex justify-between items-center">
+                        <span class="font-semibold text-gold">— Student Journey #1</span>
+                        <span>Da-Legend Campus</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gold/30 hover:border-gold transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden group">
+                            <!-- Easy to replace image: Replace student_experience_2.jpg with your photo -->
+                            <img src="student_experience_2.jpg" onerror="this.src='https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80'" alt="Da-Legend Student Experience - Vocal Training" class="w-full h-52 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-gold text-xs px-3 py-1 rounded-full font-semibold border border-gold/40">Vocal Excellence</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center space-x-2 text-xs text-gold font-medium">
+                                <i class="fa-solid fa-microphone-lines"></i>
+                                <span>Student Experience at Da-Legend</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">"Finding My Authentic Vocal Range & Pitch"</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                "The warm, structured environment at Da-Legend made vocal training feel effortless. The unique breath control exercises gave my singing voice tremendous clarity and power."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 text-xs text-gray-400 border-t border-gold/10 mt-4 flex justify-between items-center">
+                        <span class="font-semibold text-gold">— Student Journey #2</span>
+                        <span>Da-Legend Vocal Lab</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gold/30 hover:border-gold transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden group">
+                            <!-- Easy to replace image: Replace student_experience_3.jpg with your photo -->
+                            <img src="student_experience_3.jpg" onerror="this.src='https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=600&q=80'" alt="Da-Legend Student Experience - Guitar & Band Session" class="w-full h-52 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-gold text-xs px-3 py-1 rounded-full font-semibold border border-gold/40">Guitar & Ensemble</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center space-x-2 text-xs text-gold font-medium">
+                                <i class="fa-solid fa-guitar"></i>
+                                <span>Student Experience at Da-Legend</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">"Performing Live on Stage with Full Confidence"</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                "Before joining Da-Legend, stage fright was a huge barrier. Through ensemble practice and live student showcases, I now perform live guitar solos without hesitation!"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 text-xs text-gray-400 border-t border-gold/10 mt-4 flex justify-between items-center">
+                        <span class="font-semibold text-gold">— Student Journey #3</span>
+                        <span>Da-Legend Concert Hall</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Two Interactive Video Players (Only in News Page as requested) -->
+            <div class="glass-panel p-8 rounded-3xl border-gold/40 space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-gold/20 pb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play text-red-500"></i> Academy Featured Video Recordings
+                        </h3>
+                        <p class="text-sm text-gray-300">Watch live student recitals and classroom highlights at Da-Legend Academy.</p>
+                    </div>
+                    <span class="text-xs text-gold/80 bg-gold/10 px-3 py-1 rounded-md border border-gold/30 mt-2 sm:mt-0">2 Videos Featured</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Video Player 1 (Change video_1.mp4 to your local video file) -->
+                    <div class="space-y-3">
+                        <div class="relative bg-black rounded-2xl overflow-hidden border border-gold/30 shadow-lg">
+                            <video id="academyVideo1" controls class="w-full h-64 object-cover" poster="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=800&q=80">
+                                <!-- Place your video file path in src below -->
+                                <source src="videos/legend (1).mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                         <div>
-                            <h3 class="text-xl font-heading font-bold text-white dark:text-white light:text-slate-900 mb-2">Discover Your Voice</h3>
-                            <p class="text-slate-300 light:text-slate-600 leading-relaxed">
-                                We believe that everyone has a rhythm, a sound, and a story waiting to be heard. Our goal is to help you discover your voice, sharpen your skills, and become the legend you were born to be.
+                            <span class="text-xs text-gold font-semibold uppercase tracking-wider">Video 1: Performance Showcase</span>
+                            <h4 class="text-lg font-bold text-white">Da-Legend Student Annual Piano Recital</h4>
+                            <p class="text-xs text-gray-300 mt-1">
+                                An extraordinary live concert performance featuring advanced students demonstrating keyboard mastery at Da-Legend.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Video Player 2 (Change video_2.mp4 to your local video file) -->
+                    <div class="space-y-3">
+                        <div class="relative bg-black rounded-2xl overflow-hidden border border-gold/30 shadow-lg">
+                            <video id="academyVideo2" controls class="w-full h-64 object-cover" poster="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80">
+                                <!-- Place your video file path in src below -->
+                                <source src="videos/legend (2).mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold uppercase tracking-wider">Video 2: Interactive Class Session</span>
+                            <h4 class="text-lg font-bold text-white">Behind the Scenes: Da-Legend Vocal Session</h4>
+                            <p class="text-xs text-gray-300 mt-1">
+                                Take a look inside our daily vocal coaching routines and ear training exercises led by Da-Legend music instructors.
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl border-l-4 border-l-legend-purpleLight transition hover:transform hover:-translate-y-1">
-                    <div class="flex items-start space-x-4">
-                        <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400">
-                            <i class="fa-solid fa-heart text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-heading font-bold text-white dark:text-white light:text-slate-900 mb-2">Train Heart & Mind</h3>
-                            <p class="text-slate-300 light:text-slate-600 leading-relaxed">
-                                At Da Legend, we train the heart, the hands, and the mind — blending creativity, discipline, and fun into one unforgettable journey whether you are a complete beginner or an experienced performer.
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </section>
 
-            <!-- All Kinds of Music Section -->
-            <div class="space-y-6">
-                <div class="text-center max-w-2xl mx-auto space-y-2">
-                    <div class="inline-flex items-center space-x-2 text-legend-accent text-sm font-semibold tracking-wider uppercase">
-                        <i class="fa-solid fa-music"></i>
-                        <span>Diverse Soundscapes</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-4xl font-heading font-bold text-white dark:text-white light:text-slate-900">Introduction to All Kinds of Music</h2>
-                    <p class="text-slate-400 light:text-slate-600">Music is universal. It speaks every language, touches every soul, and connects every culture.</p>
+        <!-- ================= STREAMING_CHUNK:Rendering About Us Section... ================= -->
+        <section id="tab-about" class="tab-content hidden space-y-10">
+            <div class="glass-panel p-8 lg:p-12 rounded-3xl space-y-8 border-gold/30">
+                <div class="max-w-3xl space-y-4">
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-gold bg-gold/10 px-4 py-1.5 rounded-full border border-gold/30">About Da-Legend</span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-white">Empowering Musicians to Become True Legends</h2>
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Founded with a passion for sound perfection, <strong>Da-Legend Music Academy</strong> stands as a premier institution dedicated to raising exceptional musicians, producers, and vocalists. Our holistic approach blends classical rigor with modern digital techniques.
+                    </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Classical -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-hands-holding-child"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Classical Music</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">Where elegance, technique, and harmony come together. Learn sheet music, chords, and perform with grace.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+                    <div class="glass-panel p-5 rounded-xl border-gold/20 text-center space-y-2">
+                        <p class="text-3xl font-extrabold text-gold">500+</p>
+                        <p class="text-xs text-gray-300 uppercase tracking-wider">Graduated Students</p>
                     </div>
-                    <!-- Jazz -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-sax-hot"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Jazz</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">The sound of freedom and creativity. Discover improvisation, rhythm, and expression that make jazz timeless.</p>
+                    <div class="glass-panel p-5 rounded-xl border-gold/20 text-center space-y-2">
+                        <p class="text-3xl font-extrabold text-gold">100%</p>
+                        <p class="text-xs text-gray-300 uppercase tracking-wider">Practical Training</p>
                     </div>
-                    <!-- Gospel -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-hands-praying"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Gospel Music</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">Sing and play from the heart. Feel the spirit and emotion that moves both performer and listener.</p>
+                    <div class="glass-panel p-5 rounded-xl border-gold/20 text-center space-y-2">
+                        <p class="text-3xl font-extrabold text-gold">12+</p>
+                        <p class="text-xs text-gray-300 uppercase tracking-wider">Music Disciplines</p>
                     </div>
-                    <!-- Afrobeat -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-legend-accent flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-drum"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Afrobeat</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">The heartbeat of Africa! Learn energetic rhythms, percussions, and dance-driven melodies that move people.</p>
-                    </div>
-                    <!-- Pop & R&B -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-microphone-lines"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Pop & R&B</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">Master modern sound, smooth vocals, and performance confidence. Bring out your inner superstar.</p>
-                    </div>
-                    <!-- Rock & Metal -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-guitar"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Rock & Metal</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">Bold, powerful, and full of energy. Learn guitar riffs, drum solos, and how to own the stage.</p>
-                    </div>
-                    <!-- Instrumental & Orchestral -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-drum-steelpan"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Instrumental</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">Understand balance, harmony, ear training, and teamwork in orchestral and group ensemble setup.</p>
-                    </div>
-                    <!-- Electronic Music -->
-                    <div class="glass-panel p-6 rounded-2xl space-y-3 transition duration-300 hover:border-legend-accent/50 group">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
-                            <i class="fa-solid fa-sliders"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white dark:text-white light:text-slate-900">Electronic & Production</h4>
-                        <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 leading-relaxed">Learn how to produce, mix, synth, and create modern digital music with today's software tools.</p>
+                    <div class="glass-panel p-5 rounded-xl border-gold/20 text-center space-y-2">
+                        <p class="text-3xl font-extrabold text-gold">24/7</p>
+                        <p class="text-xs text-gray-300 uppercase tracking-wider">Studio Support</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Mission, Vision & Offerings -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Mission -->
-                <div class="glass-panel p-8 rounded-2xl space-y-4">
-                    <div class="flex items-center space-x-3 text-legend-accent">
-                        <i class="fa-solid fa-bullseye text-2xl"></i>
-                        <h3 class="text-2xl font-heading font-bold text-white dark:text-white light:text-slate-900">Our Mission</h3>
+                <div class="border-t border-gold/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-gold">Ready to Begin Your Academy Journey?</h4>
+                        <p class="text-sm text-gray-300">Connect directly with the Da-Legend admissions team now.</p>
                     </div>
-                    <ul class="space-y-3 text-slate-300 light:text-slate-600 text-sm leading-relaxed">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-legend-accent mr-2.5 mt-1"></i>To inspire and raise a generation of musicians who create from the heart and perform with passion.</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-legend-accent mr-2.5 mt-1"></i>To make quality music education accessible, enjoyable, and powerful for every student.</li>
-                    </ul>
-                </div>
-                <!-- Vision -->
-                <div class="glass-panel p-8 rounded-2xl space-y-4">
-                    <div class="flex items-center space-x-3 text-legend-accent">
-                        <i class="fa-solid fa-eye text-2xl"></i>
-                        <h3 class="text-2xl font-heading font-bold text-white dark:text-white light:text-slate-900">Our Vision</h3>
-                    </div>
-                    <ul class="space-y-3 text-slate-300 light:text-slate-600 text-sm leading-relaxed">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-legend-accent mr-2.5 mt-1"></i>To become a premier music academy transforming ordinary talent into extraordinary artistry.</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-legend-accent mr-2.5 mt-1"></i>We envision a world where music unites cultures, heals souls, and shapes bright futures.</li>
-                    </ul>
-                </div>
-                <!-- What We Offer -->
-                <div class="glass-panel p-8 rounded-2xl space-y-4">
-                    <div class="flex items-center space-x-3 text-legend-accent">
-                        <i class="fa-solid fa-gift text-2xl"></i>
-                        <h3 class="text-2xl font-heading font-bold text-white dark:text-white light:text-slate-900">What We Offer</h3>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 light:text-slate-600 text-sm">
-                        <li class="flex items-center"><i class="fa-solid fa-music text-legend-purpleLight mr-2"></i> Professional Vocal & Instrument Training</li>
-                        <li class="flex items-center"><i class="fa-solid fa-pen-nib text-legend-purpleLight mr-2"></i> Songwriting & Production Lessons</li>
-                        <li class="flex items-center"><i class="fa-solid fa-microphone text-legend-purpleLight mr-2"></i> Stage Confidence Building</li>
-                        <li class="flex items-center"><i class="fa-solid fa-record-vinyl text-legend-purpleLight mr-2"></i> Studio Recording Sessions</li>
-                        <li class="flex items-center"><i class="fa-solid fa-sliders text-legend-purpleLight mr-2"></i> Ear Training & Music Theory</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Join Banner CTA -->
-            <div class="glass-panel p-8 sm:p-12 rounded-3xl text-center space-y-6 relative overflow-hidden bg-gradient-to-r from-legend-darkCard via-legend-purple/40 to-legend-darkCard">
-                <i class="fa-solid fa-handshake text-5xl text-legend-accent mb-2"></i>
-                <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white dark:text-white light:text-slate-900">Ready to Become a Legend?</h2>
-                <p class="max-w-2xl mx-auto text-slate-300 light:text-slate-600 text-base sm:text-lg">
-                    At Da Legend Music Academy, your sound matters. Enroll today and start your musical journey alongside instructors who truly believe in your potential.
-                </p>
-                <div>
-                    <button onclick="navigateTo('news')" class="px-8 py-4 rounded-2xl bg-legend-accent text-slate-950 font-bold hover:bg-emerald-300 transition-all shadow-xl glow-accent text-lg">
-                        Get Started Today
+                    <button onclick="openEnrollModal()" class="px-8 py-3.5 rounded-xl bg-gold text-black font-extrabold hover:bg-gold-glow transition-all">
+                        Connect on WhatsApp (+234 701 104 6892)
                     </button>
                 </div>
             </div>
         </section>
 
-        <section id="section-news" class="hidden space-y-8">
-            <div class="border-b border-legend-accent/20 pb-4">
-                <h2 class="text-3xl font-heading font-bold text-white dark:text-white light:text-slate-900">Academy Announcements & News</h2>
-                <p class="text-slate-400 light:text-slate-600 text-sm mt-1">Stay updated with fresh news, events, and opportunities at Da-Legend.</p>
+        <!-- ================= STREAMING_CHUNK:Rendering Courses/Profile Section... ================= -->
+        <section id="tab-profile" class="tab-content hidden space-y-8">
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-gold bg-gold/10 px-4 py-1.5 rounded-full border border-gold/30">Academic Programs</span>
+                <h2 class="text-3xl font-extrabold text-white">Da-Legend Music Curriculums</h2>
+                <p class="text-gray-300 text-sm">Choose your specialized instrument or vocal track built for all skill levels.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Welcome Message Card -->
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-xl bg-legend-purple flex items-center justify-center text-legend-accent text-xl font-bold">
-                                DL
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white dark:text-white light:text-slate-900">WELCOME MESSAGE</h3>
-                                <span class="text-xs text-legend-accent">Official Update</span>
-                            </div>
-                        </div>
-                        <p class="text-slate-300 light:text-slate-600 text-sm leading-relaxed">
-                            Welcome to Da-Legend News Section! This is where you will always stay updated, informed, and connected to everything happening around Da-Legend Music Academy. We don't just post news — we share experiences, growth, and inspiration. Think of this as your daily update center for courses, concerts, and music tips!
-                        </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Course 1 -->
+                <div class="glass-panel p-6 rounded-2xl border-gold/30 hover:border-gold transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-keyboard"></i>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <button onclick="toggleLike(this)" class="flex items-center space-x-2 text-slate-400 hover:text-red-400 transition">
-                            <i class="fa-regular fa-heart text-xl"></i>
-                            <span class="text-xs font-semibold">Like (<span class="like-count">24</span>)</span>
-                        </button>
-                        <span class="text-xs text-slate-500">Dec 2025</span>
-                    </div>
+                    <h3 class="text-xl font-bold text-white">Piano & Sight-Reading</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">Master chords, classical finger agility, sheet music, scales, and contemporary gospel/jazz harmony.</p>
+                    <button onclick="openEnrollModal()" class="w-full py-2.5 rounded-lg bg-gold/10 text-gold hover:bg-gold hover:text-black font-semibold text-xs border border-gold/30 transition-all">Enroll in Piano</button>
                 </div>
 
-                <!-- Christmas Carol Announcement -->
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between border-t-2 border-t-legend-accent">
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-xl bg-red-900/40 text-red-400 flex items-center justify-center text-xl font-bold">
-                                <i class="fa-solid fa-bell"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white dark:text-white light:text-slate-900">CHRISTMAS CAROL ANNOUNCEMENT</h3>
-                                <span class="text-xs text-red-400">Dec 23, 2025</span>
-                            </div>
-                        </div>
-                        <p class="text-slate-300 light:text-slate-600 text-sm leading-relaxed">
-                            The season of joy is here! We are pleased to announce our Annual Christmas Carol Celebration on December 23rd, 2025. Featuring choral performances, instrumental presentations, solo features, and creative arts. Everyone is invited to experience the warmth and unity of music!
-                        </p>
+                <!-- Course 2 -->
+                <div class="glass-panel p-6 rounded-2xl border-gold/30 hover:border-gold transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-microphone"></i>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <button onclick="toggleLike(this)" class="flex items-center space-x-2 text-slate-400 hover:text-red-400 transition">
-                            <i class="fa-regular fa-heart text-xl"></i>
-                            <span class="text-xs font-semibold">Like (<span class="like-count">58</span>)</span>
-                        </button>
-                        <span class="text-xs text-slate-500">Upcoming Event</span>
-                    </div>
+                    <h3 class="text-xl font-bold text-white">Vocal Pitch & Dynamics</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">Vocal range extension, pitch accuracy, breathing stamina, vocal runs, and stage presence training.</p>
+                    <button onclick="openEnrollModal()" class="w-full py-2.5 rounded-lg bg-gold/10 text-gold hover:bg-gold hover:text-black font-semibold text-xs border border-gold/30 transition-all">Enroll in Vocals</button>
                 </div>
 
-                <!-- Da-Legend Anniversary -->
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between border-t-2 border-t-legend-gold">
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl font-bold">
-                                <i class="fa-solid fa-crown"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white dark:text-white light:text-slate-900">DA-LEGEND ANNIVERSARY</h3>
-                                <span class="text-xs text-amber-400">December 26</span>
-                            </div>
-                        </div>
-                        <p class="text-slate-300 light:text-slate-600 text-sm leading-relaxed">
-                            On December 26, we celebrate another landmark year of transforming lives through musical instruction. Join us for musical showcases, appreciation moments, and special guest performances. Growth takes time, music takes practice, but progress always comes!
-                        </p>
+                <!-- Course 3 -->
+                <div class="glass-panel p-6 rounded-2xl border-gold/30 hover:border-gold transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-guitar"></i>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <button onclick="toggleLike(this)" class="flex items-center space-x-2 text-slate-400 hover:text-red-400 transition">
-                            <i class="fa-regular fa-heart text-xl"></i>
-                            <span class="text-xs font-semibold">Like (<span class="like-count">42</span>)</span>
-                        </button>
-                        <span class="text-xs text-slate-500">Anniversary</span>
-                    </div>
+                    <h3 class="text-xl font-bold text-white">Acoustic & Electric Guitar</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">Fretboard navigation, fingerstyle techniques, solo riffs, rhythm picking, and music theory integration.</p>
+                    <button onclick="openEnrollModal()" class="w-full py-2.5 rounded-lg bg-gold/10 text-gold hover:bg-gold hover:text-black font-semibold text-xs border border-gold/30 transition-all">Enroll in Guitar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= STREAMING_CHUNK:Rendering Audio Hub Music Player... ================= -->
+        <section id="tab-music" class="tab-content hidden space-y-8">
+            <div class="glass-panel p-8 rounded-3xl border-gold/40 space-y-6 max-w-3xl mx-auto">
+                <div class="text-center space-y-2">
+                    <span class="text-xs text-gold uppercase tracking-widest font-bold">Audio Player</span>
+                    <h2 class="text-2xl font-extrabold text-white">Da-Legend Studio Recordings</h2>
+                    <p class="text-xs text-gray-300">Listen to original audio samples produced at Da-Legend Music Academy.</p>
                 </div>
 
-                <!-- Enrollment Open -->
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between border-t-2 border-t-emerald-400">
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-legend-accent flex items-center justify-center text-xl font-bold">
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white dark:text-white light:text-slate-900">ENROLLMENT NOW OPEN</h3>
-                                <span class="text-xs text-legend-accent">Open Admissions</span>
-                            </div>
+                <!-- Audio Player Container -->
+                <div class="bg-black/60 p-6 rounded-2xl border border-gold/30 space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-xl bg-gold/20 flex items-center justify-center text-gold text-2xl font-bold">
+                            <i class="fa-solid fa-music"></i>
                         </div>
-                        <p class="text-slate-300 light:text-slate-600 text-sm leading-relaxed">
-                            Admissions are officially open for new students! Learn instruments, vocal techniques, music theory, and stage performance with patient and expert tutors. Flexible schedules available for kids, teens, and working adults.
-                        </p>
+                        <div class="flex-grow">
+                            <h4 id="currentSongTitle" class="font-bold text-lg text-white">Da-Legend Piano Improvisation</h4>
+                            <p id="currentSongArtist" class="text-xs text-gold">Da-Legend Student Orchestra</p>
+                        </div>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <button onclick="toggleLike(this)" class="flex items-center space-x-2 text-slate-400 hover:text-red-400 transition">
-                            <i class="fa-regular fa-heart text-xl"></i>
-                            <span class="text-xs font-semibold">Like (<span class="like-count">89</span>)</span>
-                        </button>
-                        <span class="text-xs text-slate-500">Admissions</span>
+
+                    <!-- Audio Element (Easy to replace src with your mp3) -->
+                    <audio id="mainAudioPlayer" class="w-full mt-2" controls>
+                        <source id="audioSource" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <div class="text-xs text-gray-400 text-center pt-2">
+                        <span>you can listen to  <code>music</code> from da-legend here</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="section-about" class="hidden space-y-8">
-            <div class="glass-panel p-8 sm:p-12 rounded-3xl space-y-6">
-                <div class="flex items-center space-x-4">
-                    <div class="p-3 bg-legend-accent/10 rounded-2xl text-legend-accent">
-                        <i class="fa-solid fa-circle-info text-3xl"></i>
+        <!-- ================= STREAMING_CHUNK:Rendering AI Chatbot Tutor... ================= -->
+        <section id="tab-ai" class="tab-content hidden space-y-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl border-gold/40 max-w-3xl mx-auto space-y-4">
+                <div class="flex items-center space-x-3 border-b border-gold/20 pb-4">
+                    <div class="w-10 h-10 rounded-full bg-gold/20 text-gold flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-robot"></i>
                     </div>
                     <div>
-                        <h2 class="text-3xl font-heading font-bold text-white dark:text-white light:text-slate-900">About Da-Legend Music Academy</h2>
-                        <p class="text-slate-400 light:text-slate-600 text-sm">Where passion meets talent and every note tells a story.</p>
+                        <h3 class="font-bold text-lg text-white">Da-Legend AI Music Tutor</h3>
+                        <p class="text-xs text-gray-300">Ask any questions about piano keys, vocal warmup exercises, scales, or chord formulas.</p>
                     </div>
                 </div>
 
-                <div class="space-y-4 text-slate-300 light:text-slate-600 leading-relaxed text-base">
-                    <p>
-                        Founded with the vision of nurturing musicians of all levels, <strong class="text-white dark:text-white light:text-slate-900">Da-Legend Music Academy</strong> is more than just a place to learn music — it’s a vibrant community where creativity, discipline, and passion converge.
-                    </p>
-                    <p>
-                        At Da-Legend, we believe that everyone possesses a unique musical voice. Our mission is to provide the guided mentorship needed to help you discover, sharpen, and refine that sound. Whether you are a beginner picking up an instrument for the very first time, a vocalist aiming to extend your range, or an experienced musician seeking advanced technique, our academy offers tailored programs to suit your aspirations.
-                    </p>
-                    <p>
-                        Our dedicated instructors are not merely teachers — they are active mentors, performers, and passionate artists committed to walking every step of your musical journey alongside you. We combine traditional foundational methods with dynamic modern techniques to keep learning engaging, inspiring, and effective.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-700/50">
-                    <div class="text-center p-4 rounded-xl bg-black/20 light:bg-slate-200/50">
-                        <span class="text-3xl font-heading font-extrabold text-legend-accent block">100%</span>
-                        <span class="text-xs text-slate-400 light:text-slate-600 uppercase tracking-wider font-medium">Hands-On Practice</span>
-                    </div>
-                    <div class="text-center p-4 rounded-xl bg-black/20 light:bg-slate-200/50">
-                        <span class="text-3xl font-heading font-extrabold text-legend-accent block">All Ages</span>
-                        <span class="text-xs text-slate-400 light:text-slate-600 uppercase tracking-wider font-medium">Beginner to Pro</span>
-                    </div>
-                    <div class="text-center p-4 rounded-xl bg-black/20 light:bg-slate-200/50">
-                        <span class="text-3xl font-heading font-extrabold text-legend-accent block">Live Stage</span>
-                        <span class="text-xs text-slate-400 light:text-slate-600 uppercase tracking-wider font-medium">Concerts & Showcases</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="section-profile" class="hidden space-y-8">
-            <div class="glass-panel p-8 sm:p-12 rounded-3xl space-y-8">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-gradient-to-tr from-legend-purple via-purple-600 to-legend-accent p-1.5 shadow-2xl flex-shrink-0">
-                        <div class="w-full h-full rounded-full bg-legend-darkCard flex items-center justify-center overflow-hidden relative">
-                            <i class="fa-solid fa-user-ninja text-6xl text-legend-accent"></i>
+                <!-- Chat Box Screen -->
+                <div id="chatBox" class="h-80 overflow-y-auto space-y-3 p-4 rounded-xl bg-black/40 border border-gold/20 text-sm">
+                    <div class="flex items-start space-x-2">
+                        <span class="bg-gold text-black text-xs font-bold px-2 py-1 rounded">AI</span>
+                        <div class="bg-gold/10 text-gray-200 p-3 rounded-lg max-w-[85%] border border-gold/20">
+                            Hello! I am your Da-Legend AI Music Assistant. Ask me anything like: <em>"How do I practice major scales?"</em> or <em>"Give me a vocal warmup routine."</em>
                         </div>
                     </div>
-                    <div class="space-y-3 text-center md:text-left">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-legend-accent/20 text-legend-accent border border-legend-accent/30">
-                            Founder & Lead Instructor
-                        </span>
-                        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white dark:text-white light:text-slate-900">Da-legend</h2>
-                        <p class="text-slate-400 light:text-slate-600 text-sm max-w-xl">
-                            Musician, Instrumentalist, Vocal Coach, and Visionary behind Da-Legend Music Academy.
-                        </p>
-                    </div>
                 </div>
 
-                <div class="space-y-4 text-slate-300 light:text-slate-600 leading-relaxed text-base pt-6 border-t border-slate-700/50">
-                    <p>
-                        Welcome to my profile! I’m <strong class="text-white dark:text-white light:text-slate-900">Da-legend</strong>, a passionate musician and educator dedicated to sharing the lifelong joy of music with learners of all ages.
-                    </p>
-                    <p>
-                        Music has always been the center of my life. Through Da-Legend Music Academy, I strive to inspire, coach, and guide students to reach their fullest potential. I specialize in instrumental performance, vocal range building, ear training, and stagecraft.
-                    </p>
-                    <p>
-                        My core teaching philosophy is simple: <em>Help every student discover their authentic musical voice, build unshakable stage confidence, and enjoy every single step of the process.</em>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="section-music" class="hidden space-y-8">
-            <div class="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 max-w-3xl mx-auto border border-legend-accent/30">
-                <div class="text-center space-y-2">
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-legend-purple text-purple-200 uppercase tracking-widest">
-                        Academy Showcase
-                    </span>
-                    <h2 class="text-3xl font-heading font-bold text-white dark:text-white light:text-slate-900">Da-Legend Studio Player</h2>
-                    <p class="text-slate-400 light:text-slate-600 text-sm">Listen to student showcases, instrumental jams, and vocal exercises.</p>
-                </div>
-
-                <!-- Main Player Card -->
-                <div class="bg-black/40 light:bg-slate-200/60 rounded-2xl p-6 space-y-6 shadow-inner">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-16 h-16 rounded-xl bg-gradient-to-tr from-legend-purple to-legend-accent flex items-center justify-center text-2xl text-white shadow-lg flex-shrink-0 animate-pulse">
-                            <i class="fa-solid fa-compact-disc"></i>
-                        </div>
-                        <div class="flex-grow overflow-hidden">
-                            <h4 id="currentTrackTitle" class="font-bold text-lg text-white dark:text-white light:text-slate-900 truncate">Afrobeat Jam Session (Student Showcase)</h4>
-                            <p id="currentTrackArtist" class="text-xs text-legend-accent truncate">Da-Legend Ensemble</p>
-                        </div>
-                    </div>
-
-                    <!-- Progress Bar -->
-                    <div class="space-y-2">
-                        <div class="w-full bg-slate-700/50 rounded-full h-2.5 cursor-pointer overflow-hidden" id="progressBarContainer" onclick="seekTrack(event)">
-                            <div id="progressBar" class="bg-gradient-to-r from-legend-purple to-legend-accent h-full w-1/3 transition-all"></div>
-                        </div>
-                        <div class="flex justify-between text-xs text-slate-400">
-                            <span id="currentTime">0:45</span>
-                            <span id="totalTime">2:30</span>
-                        </div>
-                    </div>
-
-                    <!-- Controls -->
-                    <div class="flex items-center justify-center space-x-6">
-                        <button onclick="prevTrack()" class="text-slate-400 hover:text-white transition text-xl">
-                            <i class="fa-solid fa-backward-step"></i>
-                        </button>
-                        <button onclick="togglePlayPause()" id="playPauseBtn" class="w-14 h-14 rounded-full bg-legend-accent text-slate-950 flex items-center justify-center text-2xl font-bold hover:scale-105 transition shadow-lg glow-accent">
-                            <i class="fa-solid fa-play ml-1"></i>
-                        </button>
-                        <button onclick="nextTrack()" class="text-slate-400 hover:text-white transition text-xl">
-                            <i class="fa-solid fa-forward-step"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Playlist -->
-                <div class="space-y-3">
-                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Academy Tracklist</h3>
-                    <div class="space-y-2" id="playlistContainer">
-                        <!-- Dynamic track list items inserted via JS -->
-                    </div>
-                </div>
+                <!-- Chat Input Form -->
+                <form onsubmit="handleAiChat(event)" class="flex gap-2">
+                    <input type="text" id="aiInput" placeholder="Ask Da-Legend AI Music Tutor..." class="flex-grow bg-black/60 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold">
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gold text-black font-bold text-sm hover:bg-gold-glow transition-all">Send</button>
+                </form>
             </div>
         </section>
 
     </main>
 
-    <!-- Floating Chat Toggle Button -->
-    <button onclick="toggleChatModal()" class="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-tr from-legend-purple to-legend-accent text-white shadow-2xl glow-accent hover:scale-110 transition-all focus:outline-none flex items-center space-x-2">
-        <i class="fa-solid fa-robot text-2xl text-legend-accentGlow"></i>
-        <span class="hidden sm:inline font-bold text-sm pr-1">Ask Music AI</span>
-    </button>
-
-    <!-- Chat Modal Window -->
-    <div id="chatModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-panel w-full max-w-lg h-[600px] max-h-[90vh] rounded-3xl flex flex-col shadow-2xl border border-legend-accent/30 overflow-hidden">
-            
-            <!-- Modal Header -->
-            <div class="p-4 bg-legend-purple/80 border-b border-white/10 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-legend-accent/20 text-legend-accent flex items-center justify-center border border-legend-accent/30">
-                        <i class="fa-solid fa-robot text-lg"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-base leading-tight">Da-Legend Music AI</h3>
-                        <span class="text-[11px] text-emerald-300 flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-1.5 animate-pulse"></span>
-                            Only answers music topics
-                        </span>
-                    </div>
+    <div id="enrollModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-8 rounded-3xl max-w-md w-full border-gold/50 space-y-6 relative animate-fade-in">
+            <button onclick="closeEnrollModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-2">
+                <div class="w-16 h-16 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-3xl mx-auto border border-green-500/40">
+                    <i class="fa-brands fa-whatsapp"></i>
                 </div>
-                <button onclick="toggleChatModal()" class="text-slate-300 hover:text-white p-2 text-xl">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <h3 class="text-2xl font-extrabold text-white">Enroll at Da-Legend</h3>
+                <p class="text-xs text-gray-300">Start your musical journey directly via official WhatsApp contact.</p>
             </div>
 
-            <!-- Chat Messages Container -->
-            <div id="chatMessages" class="flex-grow p-4 overflow-y-auto space-y-4">
-                <!-- Welcome Assistant Message -->
-                <div class="flex items-start space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-legend-purple text-legend-accent flex items-center justify-center text-xs flex-shrink-0">
-                        <i class="fa-solid fa-music"></i>
-                    </div>
-                    <div class="bg-legend-darkCard dark:bg-legend-darkCard light:bg-slate-200 p-3.5 rounded-2xl rounded-tl-none max-w-[85%] text-sm text-slate-200 light:text-slate-800 leading-relaxed shadow">
-                        Hello! I am the <strong>Da-Legend Music AI</strong> 🎵. Ask me anything about music theory, instruments, vocal warmups, genres like Afrobeat or Jazz, or details about our academy and lead instructor Israel Ojo!
-                    </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gold mb-1">Your Name</label>
+                    <input type="text" id="modalStudentName" placeholder="Enter your full name" class="w-full bg-black/60 border border-gold/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gold mb-1">Preferred Instrument / Track</label>
+                    <select id="modalCourse" class="w-full bg-black/60 border border-gold/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold">
+                        <option value="Piano Masterclass">Piano Masterclass</option>
+                        <option value="Vocal Training">Vocal Training</option>
+                        <option value="Guitar Mastery">Guitar Mastery</option>
+                        <option value="Saxophone & Brass">Saxophone & Brass</option>
+                        <option value="Audio Production">Audio Production</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Quick Prompt Chips -->
-            <div class="px-4 py-2 border-t border-white/5 bg-black/20 overflow-x-auto flex space-x-2 scrollbar-none">
-                <button onclick="sendQuickPrompt('Tell me about Afrobeat')" class="px-3 py-1 rounded-full bg-legend-accent/10 hover:bg-legend-accent/20 text-legend-accent text-xs whitespace-nowrap border border-legend-accent/30 transition">
-                    🥁 Tell me about Afrobeat
-                </button>
-                <button onclick="sendQuickPrompt('How to practice vocal scales?')" class="px-3 py-1 rounded-full bg-legend-accent/10 hover:bg-legend-accent/20 text-legend-accent text-xs whitespace-nowrap border border-legend-accent/30 transition">
-                    🎤 Vocal Scale Tips
-                </button>
-                <button onclick="sendQuickPrompt('What courses does the Academy offer?')" class="px-3 py-1 rounded-full bg-legend-accent/10 hover:bg-legend-accent/20 text-legend-accent text-xs whitespace-nowrap border border-legend-accent/30 transition">
-                    🎓 Academy Courses
-                </button>
-                <button onclick="sendQuickPrompt('Who is Da-legend')" class="px-3 py-1 rounded-full bg-legend-accent/10 hover:bg-legend-accent/20 text-legend-accent text-xs whitespace-nowrap border border-legend-accent/30 transition">
-                    👤 Instructor Da-legend
-                </button>
-            </div>
-
-            <!-- Input Box -->
-            <form id="chatForm" onsubmit="handleChatSubmit(event)" class="p-3 bg-legend-darkCard border-t border-white/10 flex items-center space-x-2">
-                <input type="text" id="chatInput" placeholder="Ask a music question..." class="flex-grow bg-black/30 text-white placeholder-slate-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-legend-accent border border-white/10" autocomplete="off">
-                <button type="submit" class="p-3 rounded-xl bg-legend-accent text-slate-950 hover:bg-emerald-300 font-bold transition shadow">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </form>
-
+            <button onclick="sendWhatsAppMessage()" class="w-full py-3.5 rounded-xl bg-green-500 text-black font-extrabold text-sm hover:bg-green-400 transition-all flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Open WhatsApp (+234 701 104 6892)</span>
+            </button>
         </div>
     </div>
 
-    <footer class="mt-12 glass-panel border-t border-legend-accent/20 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-            <div class="flex items-center justify-center space-x-2 text-legend-accent font-heading font-bold text-lg">
-                <i class="fa-solid fa-guitar"></i>
-                <span>DA-LEGEND MUSIC ACADEMY</span>
+    <footer class="glass-panel border-t border-gold/20 py-6 px-4 lg:px-8 mt-12 text-center text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="font-bold text-gold">DA-LEGEND MUSIC ACADEMY</span>
+                <span>© 2026 All Rights Reserved</span>
             </div>
-            <p class="text-xs text-slate-400 light:text-slate-600 max-w-md mx-auto">
-                At Da Legend Music Academy, your sound matters. Let’s make music together — not just to be heard, but to be remembered.
-            </p>
-            <p class="text-[11px] text-slate-500 pt-2">
-                &copy; 2026 Da-Legend Music Academy. All Rights Reserved.
-            </p>
+            <div class="flex space-x-4 text-gold">
+                <a href="#" onclick="openEnrollModal(); return false;" class="hover:underline">WhatsApp: +234 701 104 6892</a>
+            </div>
         </div>
     </footer>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
